@@ -1,0 +1,21 @@
+{{!-- <h1>Hello Category</h1> --}}
+<div class="content-header">
+    {{#if category.length}}
+    <div class="row">
+        {{#each category}}
+        <div class="col-md-6">
+            <div class="card">
+                <img src="/images/{{categoryIcon}}" alt="{{categoryIcon}}">
+                <div class="card-body">
+                    <a href="/admin/category/read/{{id}}" class="card-title">{{categoryName}}</a>
+                    <a href="/admin/category/delete/{{id}}" class="btn btn-danger">O'chirish</a>
+                    <a href="/admin/category/edit/{{id}}" class="btn btn-warning">O'zgartirish</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{else}}
+    <p>Category is empty</p>
+    {{/if}}
+</div>

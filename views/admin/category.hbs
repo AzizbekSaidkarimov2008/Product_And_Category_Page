@@ -1,0 +1,20 @@
+{{!-- <h1>Hello Category</h1> --}}
+<div class="content-header">
+    {{#if products.length}}
+    {{#each products}}
+    <div class="col-md-6">
+        <div class="card">
+        <img src="/images/{{img}}" alt="{{img}}">
+        <div class="card-body">
+            <a href="/admin/category/read/{{id}}" class="card-title">{{name}}</a>
+            <p class="card-title">{{price}}</p>
+            <a href="/admin/category/delete/{{id}}" class="btn btn-danger">O'chirish</a>
+            <a href="/admin/category/edit/{{id}}" class="btn btn-warning">O'zgartirish</a>
+        </div>
+    </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <p>Category is empty</p>
+    {{/if}}
+</div>

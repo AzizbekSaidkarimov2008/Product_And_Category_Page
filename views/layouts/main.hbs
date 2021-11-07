@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> head}}
+
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        {{> preloader}}
+        {{> nav}}
+        {{> aside}}
+        <div class="content-wrapper">
+            {{> header}}
+            {{{body}}}
+        </div>
+        {{> footer}}
+    </div>
+    {{> script}}
+</body>
+
+</html>

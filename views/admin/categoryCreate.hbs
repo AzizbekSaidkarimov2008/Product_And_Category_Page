@@ -1,0 +1,28 @@
+{{!-- <h1>Hello Create</h1> --}}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-primary">
+                <form action="/admin/category/add" method="POST" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="categoryName">Ketagory nomi</label>
+                        <input type="text" name="categoryName" class="form-control" id="categoryName">
+                    </div>
+                    <div class="form-group">
+                        <label for="sortNumber">Ketagory raqami</label>
+                        <input type="number" name="sortNumber" class="form-control" id="sortNumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryIcon">Ketagory ikonkasi</label>
+                        <input type="file" name="categoryIcon" class="form-control" id="categoryIcon">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" type="submit">Yaratish</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
