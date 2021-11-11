@@ -4,11 +4,13 @@ const exhbs = require("express-handlebars");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const session = require('express-session')
 
 const indexRouter = require("./routes/index");
 const adminRouter = require("./routes/admin");
 const categoryRouter = require("./routes/category");
 const productRouter = require("./routes/product");
+const authRouter = require("./routes/auth");
 
 const app = express();
 
@@ -38,11 +40,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(session({
+  resave: false,
+  secret: 'secret_key',
+  saveUninitialized: false
+}))
+
 
 app.use("/", indexRouter);
 app.use("/admin", adminRouter);
 app.use("/admin/category", categoryRouter);
 app.use("/admin/product", productRouter);
+app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
