@@ -6,7 +6,9 @@
     <div class="wrapper">
         {{> preloader}}
         {{> nav}}
+        {{#if isAuthen}}
         {{> aside}}
+        {{/if}}
         <div class="content-wrapper">
             {{> header}}
             {{{body}}}

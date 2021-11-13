@@ -4,13 +4,15 @@ const exhbs = require("express-handlebars");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const session = require('express-session')
+const session = require("express-session");
+const MongoStore = require('connect-mongodb-session')(session)
 
 const indexRouter = require("./routes/index");
 const adminRouter = require("./routes/admin");
 const categoryRouter = require("./routes/category");
 const productRouter = require("./routes/product");
 const authRouter = require("./routes/auth");
+const variables = require("./middleware/virables");
 
 const app = express();
 
@@ -32,7 +34,12 @@ app.engine(
   })
 );
 
-require('./helper/db')()
+const store = new MongoStore({
+  uri: 'mongodb+srv://azizbek:family1225vsburxon@adminpanel.htwy9.mongodb.net/adminPanel',
+  collection: 'session'
+})
+
+require("./helper/db")();
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -40,12 +47,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(session({
-  resave: false,
-  secret: 'secret_key',
-  saveUninitialized: false
-}))
+app.use(
+  session({
+    resave: false,
+    secret: "secret_key",
+    saveUninitialized: false,
+    store
+  })
+);
 
+app.use("/admin", express.static(path.join(__dirname, "piblic")));
+app.use("/admin:any", express.static(path.join(__dirname, "public")));
+
+app.use(variables)
 
 app.use("/", indexRouter);
 app.use("/admin", adminRouter);

@@ -60,8 +60,8 @@ router.get("/read/:id", async (req, res) => {
   // res.send(products)
   products = products[0].products;
   res.render("admin/category", {
-    header:categoryName,
-    title:categoryName,
+    header: categoryName,
+    title: categoryName,
     products,
     layout: "main",
   });

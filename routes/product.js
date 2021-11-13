@@ -4,8 +4,9 @@ const Category = require("../models/Category");
 const fileUpload = require("../middleware/fileUpload");
 const Product = require("../models/Product");
 const toDelete = require('../middleware/toDelete')
+const auth = require('../middleware/auth')
 
-router.get("/view", async (req, res) => {
+router.get("/view", auth ,async (req, res) => {
   const products = await Product.find()
   res.render("admin/products", {
     header: "Mahsulotlarni ko`rish",
@@ -15,7 +16,7 @@ router.get("/view", async (req, res) => {
   });
 });
 
-router.get("/add", async (req, res) => {
+router.get("/add", auth ,async (req, res) => {
   const categories = await Product.find();
   res.render("admin/productCreate", {
     header: "Mahsulot Yaratish",
@@ -24,7 +25,7 @@ router.get("/add", async (req, res) => {
   });
 });
 
-router.post("/add", fileUpload.single("img"), async (req, res) => {
+router.post("/add", auth ,fileUpload.single("img"), async (req, res) => {
   const { name, price, categoryId } = req.body;
   const img = req.file.filename;
   const product = new Product({ 
